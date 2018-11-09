@@ -14,5 +14,5 @@ cp -r --symbolic-link /simple_grid /etc/puppetlabs/code/environments/deploy/site
 cp -r --symbolic-link /simple_grid /etc/puppetlabs/code/environments/test/site/simple_grid/
 cp -r --symbolic-link /simple_grid /etc/puppetlabs/code/environments/cleanup/site/simple_grid/
 echo "Starting Puppet Server"
-#systemctl start puppetserver
+systemctl start puppetserver
 echo "All Set for development"
