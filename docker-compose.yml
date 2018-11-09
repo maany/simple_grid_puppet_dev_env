@@ -16,7 +16,7 @@ services:
       simple:
         aliases:
           - config_master.cern.ch
-  
+          - lightweight_component01:condif_master.cern.ch
   
   lightweight_component:
     build: ./lightweight_component
@@ -31,6 +31,7 @@ services:
       simple:
         aliases:
           - lightweight_component01.cern.ch
+          - config_master:lightweight_component01.cern.ch
 networks:
   simple:
 
