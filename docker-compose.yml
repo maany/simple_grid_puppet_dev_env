@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  config_master:
+    build: ./config_master/
+    container_name: config_master
+    command: /usr/sbin/init
+    cgroup_parent: config_master_cgroup
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup
+      - ../simple_grid_puppet_env_config/:/etc/puppetlabs/code/environments/config
+      - ./config_master/data:/data
+      - ../simple_grid_puppet_enc:/enc
+    networks:
+      simple:
+        aliases:
+          - config_master.cern.ch
+  
+  
+  lightweight_component:
+    build: ./lightweight_component
+    container_name: lightweight_component01
+    command: /usr/sbin/init
+    cgroup_parent: lightweight_component_cgroup
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup
+      - ./lightweight_component/data/:/data    
+    networks:
+      simple:
+        aliases:
+          - lightweight_component01.cern.ch
+networks:
+  simple:
+
+
+    
+    
