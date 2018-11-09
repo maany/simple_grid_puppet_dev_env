@@ -35,8 +35,8 @@ VOLUME [ "/enc" ]
 RUN mkdir /data
 VOLUME [ "/data" ]
 
-RUN mkdir /simple_grid_puppet_module
-VOLUME [ "/simple_grid_puppet_module" ]
+RUN mkdir /simple_grid
+VOLUME [ "/simple_grid" ]
 
 #systemd
 ENV container docker
