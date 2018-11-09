@@ -35,6 +35,9 @@ VOLUME [ "/enc" ]
 RUN mkdir /data
 VOLUME [ "/data" ]
 
+RUN mkdir /simple_grid_puppet_module
+VOLUME [ "/simple_grid_puppet_module" ]
+
 #systemd
 ENV container docker
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \

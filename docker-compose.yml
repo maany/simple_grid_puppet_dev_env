@@ -9,7 +9,13 @@ services:
     privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup
+      - ../simple_grid_puppet_env_install/:/etc/puppetlabs/code/environments/install
       - ../simple_grid_puppet_env_config/:/etc/puppetlabs/code/environments/config
+      - ../simple_grid_puppet_env_pre_deploy/:/etc/puppetlabs/code/environments/pre_deploy
+      - ../simple_grid_puppet_env_deploy/:/etc/puppetlabs/code/environments/deploy
+      - ../simple_grid_puppet_env_test/:/etc/puppetlabs/code/environments/test
+      - ../simple_grid_puppet_env_cleanup/:/etc/puppetlabs/code/environments/cleanup
+      - ../simple_grid_puppet_module/:/simple_grid_puppet_module
       - ./config_master/data:/data
       - ../simple_grid_puppet_enc:/enc
     networks:
