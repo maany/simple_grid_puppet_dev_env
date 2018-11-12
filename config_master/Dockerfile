@@ -3,6 +3,15 @@ LABEL Maintainer="Mayank Sharma (imptodefeat@gmail.com)"
 RUN rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 RUN yum -y install puppetserver puppet-agent
 
+RUN yum -y install gcc-c++ patch readline readline-devel zlib zlib-devel \
+   libyaml-devel libffi-devel openssl-devel make \
+   bzip2 autoconf automake libtool bison iconv-devel sqlite-devel 
+
+RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import -; \
+curl -L get.rvm.io | bash -s stable
+
+RUN /bin/bash -c "source /etc/profile.d/rvm.sh; rvm reload; rvm requirements run; rvm install 2.4; gem install r10k"
+
 # Directories for puppet environments
 RUN mkdir /etc/puppetlabs/code/environments/install
 RUN mkdir /etc/puppetlabs/code/environments/config
