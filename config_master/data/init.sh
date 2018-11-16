@@ -8,6 +8,7 @@ CLEANUP_ENV_DIR=/etc/puppetlabs/code/environments/cleanup
 
 cp /data/puppetserver /etc/sysconfig/puppetserver
 cp /data/puppet.conf /etc/puppetlabs/puppet/puppet.conf
+cp -r /data/.puppetlabs /root/
 
 hostnamectl set-hostname config_master.cern.ch
 hostnamectl set-hostname config_master.cern.ch
@@ -16,7 +17,7 @@ echo "Creating mount points for puppet module"
 mount --bind /simple_grid $INSTALL_ENV_DIR/site/simple_grid
 mount --bind /simple_grid $CONFIG_ENV_DIR/site/simple_grid
 mount --bind /simple_grid $PRE_DEPLOY_ENV_DIR/site/simple_grid
-mount --bind /simple_grid $DEPLOY_ENV_DIR/deploy/site/simple_grid
+mount --bind /simple_grid $DEPLOY_ENV_DIR/site/simple_grid
 mount --bind /simple_grid $TEST_ENV_DIR/site/simple_grid
 mount --bind /simple_grid $CLEANUP_ENV_DIR/site/simple_grid
 

@@ -1,0 +1,7 @@
+modulepath: "/etc/puppetlabs/code/environments/config/site/"
+concurrency: 10
+format: human
+ssh:
+  host-key-check: false
+  private-key: /etc/ssh/simple_host_key
+  user: root
