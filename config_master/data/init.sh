@@ -38,4 +38,5 @@ r10k puppetfile install --puppetfile=$CLEANUP_ENV_DIR/Puppetfile
 
 echo "Starting Puppet Server"
 systemctl start puppetserver
+
 echo "All Set for development"

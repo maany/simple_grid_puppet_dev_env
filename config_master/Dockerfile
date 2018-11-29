@@ -12,6 +12,14 @@ curl -L get.rvm.io | bash -s stable
 
 RUN /bin/bash -c "source /etc/profile.d/rvm.sh; rvm reload; rvm requirements run; rvm install 2.4; gem install r10k"
 
+# modules for Production environment (Install stage for Config Master. The module is mounted in init.sh)
+RUN /opt/puppetlabs/bin/puppet module install puppetlabs-stdlib --version 5.0.0
+RUN /opt/puppetlabs/bin/puppet module install puppetlabs-docker  --version 2.0.0
+RUN /opt/puppetlabs/bin/puppet module install puppetlabs-git --version 0.5.0
+RUN /opt/puppetlabs/bin/puppet module install puppetlabs-vcsrepo --version 2.4.0
+RUN /opt/puppetlabs/bin/puppet module install puppet-python --version 2.1.1
+RUN /opt/puppetlabs/bin/puppet module install stahnma-epel --version 1.3.1
+
 # Directories for puppet environments
 RUN mkdir /etc/puppetlabs/code/environments/install
 RUN mkdir /etc/puppetlabs/code/environments/config
@@ -35,6 +43,7 @@ VOLUME ["/etc/puppetlabs/code/environments/pre_deploy/site/simple_grid/"]
 VOLUME ["/etc/puppetlabs/code/environments/deploy/site/simple_grid/"]
 VOLUME ["/etc/puppetlabs/code/environments/test/site/simple_grid/"]
 VOLUME ["/etc/puppetlabs/code/environments/cleanup/site/simple_grid/"]
+VOLUME ["/etc/puppetlabs/code/environments/production/modules/simple_grid/"]
 
 # ENC
 RUN mkdir /enc
