@@ -9,6 +9,7 @@ services:
     privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup
+      - /var/run/docker.sock:/var/run/docker.sock
       - ../simple_grid_puppet_env_install/:/etc/puppetlabs/code/environments/install
       - ../simple_grid_puppet_env_config/:/etc/puppetlabs/code/environments/config
       - ../simple_grid_puppet_env_pre_deploy/:/etc/puppetlabs/code/environments/pre_deploy

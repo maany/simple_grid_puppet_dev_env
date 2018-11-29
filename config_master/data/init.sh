@@ -16,10 +16,11 @@ echo "Creating mount points for puppet module"
 mount --bind /simple_grid $INSTALL_ENV_DIR/site/simple_grid
 mount --bind /simple_grid $CONFIG_ENV_DIR/site/simple_grid
 mount --bind /simple_grid $PRE_DEPLOY_ENV_DIR/site/simple_grid
-mount --bind /simple_grid $DEPLOY_ENV_DIR/deploy/site/simple_grid
+mount --bind /simple_grid $DEPLOY_ENV_DIR/site/simple_grid
 mount --bind /simple_grid $TEST_ENV_DIR/site/simple_grid
 mount --bind /simple_grid $CLEANUP_ENV_DIR/site/simple_grid
-
+mkdir -p /etc/puppetlabs/code/environments/production/modules/simple_grid
+mount --bind /simple_grid /etc/puppetlabs/code/environments/production/modules/simple_grid
 
 source /etc/profile.d/rvm.sh
 echo "Downloading dependencies for install environment"
