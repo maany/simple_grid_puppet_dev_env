@@ -8,6 +8,7 @@ CLEANUP_ENV_DIR=/etc/puppetlabs/code/environments/cleanup
 
 cp /data/puppetserver /etc/sysconfig/puppetserver
 cp /data/puppet.conf /etc/puppetlabs/puppet/puppet.conf
+cp -r /data/.puppetlabs /root/
 
 hostnamectl set-hostname config_master.cern.ch
 hostnamectl set-hostname config_master.cern.ch

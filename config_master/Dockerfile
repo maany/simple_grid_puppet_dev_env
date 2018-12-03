@@ -1,7 +1,7 @@
 FROM cern/cc7-base
 LABEL Maintainer="Mayank Sharma (imptodefeat@gmail.com)"
 RUN rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-RUN yum -y install puppetserver puppet-agent
+RUN yum -y install puppetserver puppet-agent puppet-bolt vim-enhanced openssh-clients openssh-server
 
 RUN yum -y install gcc-c++ patch readline readline-devel zlib zlib-devel \
    libyaml-devel libffi-devel openssl-devel make \
