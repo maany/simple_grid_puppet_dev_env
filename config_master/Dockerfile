@@ -1,7 +1,7 @@
 FROM cern/cc7-base
 LABEL Maintainer="Mayank Sharma (imptodefeat@gmail.com)"
 RUN rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-RUN yum -y install puppetserver puppet-agent
+RUN yum -y install puppetserver puppet-agent openssh-server openssh-clients
 
 RUN yum -y install gcc-c++ patch readline readline-devel zlib zlib-devel \
    libyaml-devel libffi-devel openssl-devel make \
@@ -19,6 +19,7 @@ RUN /opt/puppetlabs/bin/puppet module install puppetlabs-git --version 0.5.0
 RUN /opt/puppetlabs/bin/puppet module install puppetlabs-vcsrepo --version 2.4.0
 RUN /opt/puppetlabs/bin/puppet module install puppet-python --version 2.1.1
 RUN /opt/puppetlabs/bin/puppet module install stahnma-epel --version 1.3.1
+RUN /opt/puppetlabs/bin/puppet module install puppet-ssh-keygen --version 3.0.1
 
 # Directories for puppet environments
 RUN mkdir /etc/puppetlabs/code/environments/install
