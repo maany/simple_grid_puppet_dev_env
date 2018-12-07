@@ -2,8 +2,8 @@ FROM cern/cc7-base
 LABEL Maintainer="Mayank Sharma (imptodefeat@gmail.com)"
 
 #install puppet agent
-RUN rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-RUN yum -y install puppet-agent
+RUN rpm -ivh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
+RUN yum -y --disablerepo=cern,el7,epel install puppet-agent
 
 #make data directory
 RUN mkdir /data
