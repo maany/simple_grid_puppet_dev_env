@@ -8,6 +8,7 @@ RUN yum -y --disablerepo=cern,el7,epel install puppet-agent
 #make data directory
 RUN mkdir /data
 VOLUME [ "/data" ]
+VOLUME ["/simple_grid"]
 
 #systemd settings
 ENV container docker
