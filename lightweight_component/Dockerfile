@@ -6,7 +6,7 @@ RUN rpm -ivh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
 RUN yum -y --disablerepo=cern,el7,epel install puppet-agent
 
 #install openssh client and server
-RUN yum install -y openssh-server openssh-clients
+RUN yum install -y openssh-server openssh-clients net-tools
 
 #make data directory
 RUN mkdir /data
