@@ -1,8 +1,8 @@
 FROM cern/cc7-base
 LABEL Maintainer="Mayank Sharma (imptodefeat@gmail.com)"
 RUN rpm -ivh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
-RUN yum -y --disablerepo=cern,el7,epel install puppetserver puppet-agent 
-RUN yum -y install openssh-server openssh-clients
+RUN yum -y --disablerepo=cern,el7,epel install puppetserver puppet-agent puppet-bolt 
+RUN yum -y install openssh-server openssh-clients vim-enhanced
 
 # modules for Production environment (Install stage for Config Master. The module is mounted in init.sh)
 RUN /opt/puppetlabs/bin/puppet module install puppet-r10k --version 6.7.0 --debug
