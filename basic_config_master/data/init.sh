@@ -11,6 +11,9 @@ echo "Installing puppet module"
 mkdir -p /etc/puppetlabs/code/environments/production/modules/simple_grid
 mount --bind /simple_grid /etc/puppetlabs/code/environments/production/modules/simple_grid
 
+echo "Configuring Bolt"
+cp -r /data/.puppetlabs /root/.puppetlabs
+
 echo "Creating dummy scripts"
 mkdir -p /etc/simple_grid/lifecycle
 touch /etc/simple_grid/lifecycle/wn_pre_config.sh
