@@ -22,4 +22,11 @@ touch /etc/simple_grid/lifecycle/wn_post_inst1.sh
 touch /etc/simple_grid/lifecycle/ce_pre_config.sh
 touch /etc/simple_grid/lifecycle/ce_pre_inst1.sh
 touch /etc/simple_grid/lifecycle/ce_post_inst1.sh
+
+# echo "Setting up DinD"
+# systemctl start docker
+# ln -s /usr/libexec/docker/docker-runc-current /usr/bin/docker-runc
+# chmod +x /data/wrapdocker.sh
+# /data/wrapdocker.sh
+
 echo "All Set for development"

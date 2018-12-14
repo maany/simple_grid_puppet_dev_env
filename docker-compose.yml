@@ -10,6 +10,7 @@ services:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup
       - /var/run/docker.sock:/var/run/docker.sock
+      - ../tmp/basic_config_master:/var/lib/docker
       - ../simple_grid_puppet_module/:/simple_grid
       - ./basic_config_master/data:/data
     networks:
@@ -50,6 +51,7 @@ services:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup
       - ./lightweight_component/data/:/data 
+      - ../tmp/lightweight_component01:/var/lib/docker
       - ../simple_grid_puppet_module/:/simple_grid   
     networks:
       simple:

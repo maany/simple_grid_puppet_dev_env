@@ -2,7 +2,7 @@ FROM cern/cc7-base
 LABEL Maintainer="Mayank Sharma (imptodefeat@gmail.com)"
 RUN rpm -ivh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
 RUN yum -y --disablerepo=cern,el7,epel install puppetserver puppet-agent puppet-bolt 
-RUN yum -y install openssh-server openssh-clients vim-enhanced
+RUN yum -y install openssh-server openssh-clients vim-enhanced iptables docker
 
 # modules for Production environment (Install stage for Config Master. The module is mounted in init.sh)
 RUN /opt/puppetlabs/bin/puppet module install puppet-r10k --version 6.7.0 --debug
@@ -18,16 +18,16 @@ RUN /opt/puppetlabs/bin/puppet module install puppet-ssh_keygen --version 3.0.1
 
 VOLUME ["/etc/puppetlabs/code/environments/production/modules/simple_grid/"]
 
-# ENC
-RUN mkdir /enc
-VOLUME [ "/enc" ]
-
 # Puppetserver config
 RUN mkdir /data
 VOLUME [ "/data" ]
 
+# Puppetmodule mount point
 RUN mkdir /simple_grid
 VOLUME [ "/simple_grid" ]
+
+# docker
+VOLUME [ "/var/lib/docker" ]
 
 #systemd
 ENV container docker

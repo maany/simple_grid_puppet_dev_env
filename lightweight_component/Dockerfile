@@ -6,13 +6,14 @@ RUN rpm -ivh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
 RUN yum -y --disablerepo=cern,el7,epel install puppet-agent
 
 #install openssh client and server
-RUN yum install -y openssh-server openssh-clients net-tools
+RUN yum install -y openssh-server openssh-clients net-tools iptables docker 
 
 #make data directory
 RUN mkdir /data
 VOLUME [ "/data" ]
 VOLUME ["/simple_grid"]
-
+VOLUME [ "/var/lib/docker" ]
+VOLUME [ "/var/run/docker.sock" ]
 #systemd settings
 ENV container docker
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
