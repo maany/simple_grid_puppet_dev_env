@@ -14,7 +14,8 @@ RUN /opt/puppetlabs/bin/puppet module install puppet-python --version 2.1.1
 RUN /opt/puppetlabs/bin/puppet module install stahnma-epel --version 1.3.1
 RUN /opt/puppetlabs/bin/puppet module install puppet-ssh_keygen --version 3.0.1
 
-
+# docker
+VOLUME [ "/var/lib/docker" ]
 
 VOLUME ["/etc/puppetlabs/code/environments/production/modules/simple_grid/"]
 
@@ -26,8 +27,7 @@ VOLUME [ "/data" ]
 RUN mkdir /simple_grid
 VOLUME [ "/simple_grid" ]
 
-# docker
-VOLUME [ "/var/lib/docker" ]
+
 
 #systemd
 ENV container docker
