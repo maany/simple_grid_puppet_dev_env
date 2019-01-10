@@ -18,6 +18,8 @@ services:
         aliases:
           - basic_config_master.cern.ch
           - lightweight_component01:basic_config_master.cern.ch
+          - lightweight_component02:basic_config_master.cern.ch
+          
   config_master:
     build: ./config_master/
     container_name: config_master
@@ -41,12 +43,16 @@ services:
         ipv4_address: 192.168.0.3
         aliases:
           - config_master.cern.ch
+          - basic_config_master:config_master.cern.ch
           - lightweight_component01:config_master.cern.ch
+          - lightweight_component02:config_master.cern.ch
   
-  lightweight_component:
+  lightweight_component01:
     build: ./lightweight_component
     container_name: lightweight_component01
     command: /usr/sbin/init
+    environment:
+      - NAME=lightweight_component01
     # cgroup_parent: lightweight_component_cgroup
     privileged: true
     volumes:
@@ -61,6 +67,27 @@ services:
           - lightweight_component01.cern.ch
           - config_master:lightweight_component01.cern.ch
           - basic_config_master:lightweight_component01.cern.ch
+          - lightweight_component02:lightweight_component01.cern.ch
+  
+  lightweight_component02:
+    build: ./lightweight_component
+    container_name: lightweight_component02
+    command: /usr/sbin/init
+    environment:
+      - NAME=lightweight_component02
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup
+      - ./lightweight_component/data/:/data 
+      - ../simple_grid_puppet_module/:/simple_grid  
+    networks:
+      simple:
+        ipv4_address: 192.168.0.5
+        aliases:
+          - lightweight_component02.cern.ch
+          - lightweight_component01:lightweight_component02.cern.ch
+          - config_master:lightweight_component02.cern.ch
+          - basic_config_master:lightweight_component02.cern.ch
 networks:
   simple:
     driver: bridge
