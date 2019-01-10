@@ -14,6 +14,7 @@ services:
       - ./basic_config_master/data:/data
     networks:
       simple:
+        ipv4_address: 192.168.0.2
         aliases:
           - basic_config_master.cern.ch
           - lightweight_component01:basic_config_master.cern.ch
@@ -37,6 +38,7 @@ services:
       - ../simple_grid_puppet_enc:/enc
     networks:
       simple:
+        ipv4_address: 192.168.0.3
         aliases:
           - config_master.cern.ch
           - lightweight_component01:config_master.cern.ch
@@ -54,12 +56,18 @@ services:
       # - ../tmp/lightweight_component01:/var/lib/docker   
     networks:
       simple:
+        ipv4_address: 192.168.0.4
         aliases:
           - lightweight_component01.cern.ch
           - config_master:lightweight_component01.cern.ch
           - basic_config_master:lightweight_component01.cern.ch
 networks:
   simple:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/24
 
 
     

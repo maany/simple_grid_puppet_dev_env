@@ -23,6 +23,9 @@ touch /etc/simple_grid/lifecycle/ce_pre_config.sh
 touch /etc/simple_grid/lifecycle/ce_pre_inst1.sh
 touch /etc/simple_grid/lifecycle/ce_post_inst1.sh
 
+echo "Starting Docker service"
+systemctl start docker
+
 # echo "Setting up DinD"
 # systemctl start docker
 # ln -s /usr/libexec/docker/docker-runc-current /usr/bin/docker-runc
