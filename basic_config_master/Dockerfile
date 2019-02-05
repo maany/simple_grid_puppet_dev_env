@@ -15,6 +15,7 @@ RUN /opt/puppetlabs/bin/puppet module install stahnma-epel --version 1.3.1
 RUN /opt/puppetlabs/bin/puppet module install puppet-ssh_keygen --version 3.0.1
 RUN /opt/puppetlabs/bin/puppet module install puppetlabs-ruby_task_helper
 RUN /opt/puppetlabs/bin/puppet module install puppetlabs-firewall --version 1.15.0
+RUN /opt/puppetlabs/bin/puppet module install CERNOps-cvmfs --version 6.0.0
 
 # docker
 VOLUME [ "/var/lib/docker" ]
