@@ -23,6 +23,11 @@ touch /etc/simple_grid/lifecycle/ce_pre_config.sh
 touch /etc/simple_grid/lifecycle/ce_pre_inst1.sh
 touch /etc/simple_grid/lifecycle/ce_post_inst1.sh
 
+echo "Creating host certificates"
+mkdir -p /etc/simple_grid/host_certificates/basic_config_master.cern.ch
+touch /etc/simple_grid/host_certificates/basic_config_master.cern.ch/hostcert.pem
+touch /etc/simple_grid/host_certificates/basic_config_master.cern.ch/hostkey.pem
+
 echo "Starting Docker service"
 systemctl start docker
 
