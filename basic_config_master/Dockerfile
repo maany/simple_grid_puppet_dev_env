@@ -2,12 +2,12 @@ FROM cern/cc7-base
 LABEL Maintainer="Mayank Sharma (imptodefeat@gmail.com)"
 RUN rpm -ivh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
 RUN yum -y --disablerepo=cern,el7,epel install puppetserver puppet-agent puppet-bolt 
-RUN yum -y install openssh-server openssh-clients vim-enhanced iptables docker
+RUN yum -y install openssh-server openssh-clients vim-enhanced iptables rsyslog
 RUN yum -y upgrade puppet-bolt
 # modules for Production environment (Install stage for Config Master. The module is mounted in init.sh)
-RUN /opt/puppetlabs/bin/puppet module install puppetlabs-stdlib --version 5.0.0
+# RUN /opt/puppetlabs/bin/puppet module install puppetlabs-stdlib --version 5.0.0
+RUN /opt/puppetlabs/bin/puppet module install puppetlabs-docker --version 3.3.0
 RUN /opt/puppetlabs/bin/puppet module install puppet-r10k --version 6.8.0 --debug
-#RUN /opt/puppetlabs/bin/puppet module install puppetlabs-docker --version 2.0.0
 RUN /opt/puppetlabs/bin/puppet module install puppetlabs-git --version 0.5.0
 RUN /opt/puppetlabs/bin/puppet module install puppetlabs-vcsrepo --version 2.4.0
 RUN /opt/puppetlabs/bin/puppet module install puppet-python --version 2.1.1

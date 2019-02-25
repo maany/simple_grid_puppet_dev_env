@@ -31,6 +31,8 @@ touch /etc/simple_grid/host_certificates/lightweight_component01.cern.ch/hostkey
 echo "Starting Docker service"
 systemctl start docker
 
+echo "Starting rsyslog"
+systemctl start rsyslog
 # echo "Setting up DinD"
 # systemctl start docker
 # ln -s /usr/libexec/docker/docker-runc-current /usr/bin/docker-runc

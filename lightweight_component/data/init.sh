@@ -10,8 +10,11 @@ mount --bind /simple_grid /etc/puppetlabs/code/environments/production/modules/s
 
 systemctl restart puppet
 
-echo "Starting Docker "
-systemctl start docker
+#echo "Starting Docker "
+#systemctl start docker
+
+echo "Starting rsyslog"
+systemctl start rsyslog
 #echo "Setting up DinD"
 #systemctl start docker
 #ln -s /usr/libexec/docker/docker-runc-current /usr/bin/docker-runc
