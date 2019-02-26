@@ -1,6 +1,6 @@
 #!/bin/bash
 rpm -ivh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
-yum -y --disablerepo=cern,el7,epel install puppetserver puppet-agent puppet-bolt 
+yum -y --disablerepo=cern,el7,epel install puppetserver puppet-agent puppet-bolt
 yum -y install openssh-server openssh-clients vim-enhanced nfs-utils
 
 systemctl disable firewalld
@@ -19,14 +19,16 @@ echo "Copying bolt config files to root"
 cp -r /root/basic_config_master/data/.puppetlabs /root/
 
 echo " Installing modules for Production environment (Install stage for Config Master)"
-/opt/puppetlabs/bin/puppet module install puppet-r10k --version 6.7.0 --debug
-#/opt/puppetlabs/bin/puppet module install puppetlabs-stdlib --version 5.0.0
-/opt/puppetlabs/bin/puppet module install puppetlabs-docker  --version 2.0.0
+/opt/puppetlabs/bin/puppet module install puppetlabs-docker --version 3.3.0
+/opt/puppetlabs/bin/puppet module install puppet-r10k --version 6.8.0 --debug
 /opt/puppetlabs/bin/puppet module install puppetlabs-git --version 0.5.0
 /opt/puppetlabs/bin/puppet module install puppetlabs-vcsrepo --version 2.4.0
 /opt/puppetlabs/bin/puppet module install puppet-python --version 2.1.1
 /opt/puppetlabs/bin/puppet module install stahnma-epel --version 1.3.1
 /opt/puppetlabs/bin/puppet module install puppet-ssh_keygen --version 3.0.1
+/opt/puppetlabs/bin/puppet module install puppetlabs-ruby_task_helper
+/opt/puppetlabs/bin/puppet module install puppetlabs-firewall --version 1.15.0
+/opt/puppetlabs/bin/puppet module install CERNOps-cvmfs --version 6.0.0
 
 echo "Installing puppet module..."
 mkdir -p /etc/puppetlabs/code/environments/production/modules/simple_grid
@@ -57,7 +59,7 @@ echo ""
 echo " systemctl restart nfs-server "
 echo ""
 echo "*********************************"
-echo "To mount in your dev machine: sudo mount -t nfs -o  resvport,rw <CM-MACHINE_IP_ADDRESS>:/etc/puppetlabs/code/environments/production/modules/simple_grid/ <˜YOUR-USER/DIR/>" 
+echo "To mount in your dev machine: sudo mount -t nfs -o  resvport,rw <CM-MACHINE_IP_ADDRESS>:/etc/puppetlabs/code/environments/production/modules/simple_grid/ <˜YOUR-USER/DIR/>"
 echo ""
 echo " To run VsCode from your Mac:"
 echo ""
