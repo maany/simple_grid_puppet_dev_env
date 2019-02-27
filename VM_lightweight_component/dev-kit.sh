@@ -1,6 +1,6 @@
 #!/bin/bash
 rpm -ivh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
-yum -y --disablerepo=cern,el7,epel install puppetserver puppet-agent
+yum -y --disablerepo=cern,el7,epel install puppet-agent
 yum -y install openssh-server openssh-clients vim-enhanced nfs-utils
 
 systemctl disable firewalld
