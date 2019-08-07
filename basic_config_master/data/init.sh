@@ -43,7 +43,7 @@ echo "Starting rsyslog"
 systemctl start rsyslog
 echo "Setting up infra validation engine"
 mkdir /etc/simple_grid/testinfra/simple_grid_infra_validation_engine/.temp
-echo "alias testinfra='python /etc/simple_grid/testinfra/simple_grid_infra_validation_engine/infra_validation_engine/main.py --filename /etc/simple_grid/testinfra/simple_grid_infra_validation_engine/tests/data/site_level_config_file.yaml'" >> ~/.bashrc
+echo "alias testinfra='python /etc/simple_grid/testinfra/simple_grid_infra_validation_engine/infra_validation_engine/main.py --filename /etc/simple_grid/testinfra/simple_grid_infra_validation_engine/tests/data/site_level_config_file.yaml --stages install,config'" >> ~/.bashrc
 echo "alias testinfra_dev_dir='cd /etc/simple_grid/testinfra/simple_grid_infra_validation_engine/infra_validation_engine'" >> ~/.bashrc
 
 echo "Setup SSH"
