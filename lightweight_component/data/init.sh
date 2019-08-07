@@ -12,6 +12,9 @@ systemctl restart puppet
 
 #echo "Starting Docker "
 #systemctl start docker
+echo "Setup SSH"
+mkdir ~/.ssh
+cp /data/authorized_keys ~/.ssh
 
 echo "Starting rsyslog"
 systemctl start rsyslog

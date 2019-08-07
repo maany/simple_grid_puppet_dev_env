@@ -36,17 +36,25 @@ echo "Install python requirements"
 pip install -r /etc/simple_grid/testinfra/simple_grid_infra_validation_engine/requirements.txt
 echo "Package and Install Yaml Compiler"
 pip install -r /etc/simple_grid/testinfra/simple_grid_yaml_compiler/requirements.txt
-mkdir /etc/simple_grid/testinfra/simple_grid_yaml_compiler/.temp
 (cd -- /etc/simple_grid/testinfra/simple_grid_yaml_compiler && python setup.py install )
 export PYTHONPATH=$PYTHONPATH:/etc/simple_grid/testinfra/simple_grid_yaml_compiler
 echo "export PYTHONPATH=$PYTHONPATH:/etc/simple_grid/testinfra/simple_grid_yaml_compiler" >> ~/.bashrc
 echo "Starting rsyslog"
 systemctl start rsyslog
+echo "Setting up infra validation engine"
+mkdir /etc/simple_grid/testinfra/simple_grid_infra_validation_engine/.temp
+echo "alias testinfra='python /etc/simple_grid/testinfra/simple_grid_infra_validation_engine/infra_validation_engine/infra_validation_engine.py --filename /etc/simple_grid/testinfra/simple_grid_infra_validation_engine/tests/data/site_level_config_file.yaml'" >> ~/.bashrc
+echo "alias testinfra_dev_dir='cd /etc/simple_grid/testinfra/simple_grid_infra_validation_engine/infra_validation_engine'" >> ~/.bashrc
+
+echo "Setup SSH"
+mkdir ~/.ssh
+cp /data/id_rsa ~/.ssh
+cp /data/id_rsa.pub ~/.ssh
 
 # echo "Setting up DinD"
 # systemctl start docker
 # ln -s /usr/libexec/docker/docker-runc-current /usr/bin/docker-runc
 # chmod +x /data/wrapdocker.sh
 # /data/wrapdocker.sh
+source ~/.bashrc
 echo "All Set for development"
-cd /etc/simple_grid/
