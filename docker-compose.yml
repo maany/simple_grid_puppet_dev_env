@@ -5,47 +5,20 @@ services:
     build: ./basic_config_master
     container_name: basic_config_master
     command: /usr/sbin/init
-    # cgroup_parent: basic_config_master_cgroup
     privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup
       - /var/run/docker.sock:/var/run/docker.sock
       - ../simple_grid_puppet_module/:/simple_grid
       - ./basic_config_master/data:/data
+      - ../simple_grid_infra_validation_engine:/etc/simple_grid/simple_grid_infra_validation_engine
     networks:
       simple:
-        ipv4_address: 192.168.0.2
+        ipv4_address: 192.168.1.2
         aliases:
           - basic_config_master.cern.ch
           - lightweight_component01:basic_config_master.cern.ch
           - lightweight_component02:basic_config_master.cern.ch
-          
-  config_master:
-    build: ./config_master/
-    container_name: config_master
-    command: /usr/sbin/init
-    cgroup_parent: config_master_cgroup
-    privileged: true
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ../simple_grid_puppet_env_install/:/etc/puppetlabs/code/environments/install
-      - ../simple_grid_puppet_env_config/:/etc/puppetlabs/code/environments/config
-      - ../simple_grid_puppet_env_pre_deploy/:/etc/puppetlabs/code/environments/pre_deploy
-      - ../simple_grid_puppet_env_deploy/:/etc/puppetlabs/code/environments/deploy
-      - ../simple_grid_puppet_env_test/:/etc/puppetlabs/code/environments/test
-      - ../simple_grid_puppet_env_cleanup/:/etc/puppetlabs/code/environments/cleanup
-      - ../simple_grid_puppet_module/:/simple_grid
-      - ./config_master/data:/data
-      - ../simple_grid_puppet_enc:/enc
-    networks:
-      simple:
-        ipv4_address: 192.168.0.3
-        aliases:
-          - config_master.cern.ch
-          - basic_config_master:config_master.cern.ch
-          - lightweight_component01:config_master.cern.ch
-          - lightweight_component02:config_master.cern.ch
   
   lightweight_component01:
     build: ./lightweight_component
@@ -62,7 +35,7 @@ services:
       # - ../tmp/lightweight_component01:/var/lib/docker   
     networks:
       simple:
-        ipv4_address: 192.168.0.4
+        ipv4_address: 192.168.1.4
         aliases:
           - lightweight_component01.cern.ch
           - config_master:lightweight_component01.cern.ch
@@ -82,7 +55,7 @@ services:
       - ../simple_grid_puppet_module/:/simple_grid  
     networks:
       simple:
-        ipv4_address: 192.168.0.5
+        ipv4_address: 192.168.1.5
         aliases:
           - lightweight_component02.cern.ch
           - lightweight_component01:lightweight_component02.cern.ch
@@ -94,7 +67,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 192.168.0.0/24
+        - subnet: 192.168.1.0/24
 
 
     

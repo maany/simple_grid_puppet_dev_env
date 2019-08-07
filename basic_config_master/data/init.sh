@@ -31,6 +31,9 @@ touch /etc/simple_grid/host_certificates/lightweight_component01.cern.ch/hostkey
 echo "Starting Docker service"
 systemctl start docker
 
+echo "Install python requirements"
+pip install -r /etc/simple_grid/simple_grid_infra_validation_engine/requirements.txt
+
 echo "Starting rsyslog"
 systemctl start rsyslog
 # echo "Setting up DinD"
