@@ -31,15 +31,22 @@ touch /etc/simple_grid/host_certificates/lightweight_component01.cern.ch/hostkey
 echo "Starting Docker service"
 systemctl start docker
 
+pip install --upgrade pip setuptools wheel
 echo "Install python requirements"
-pip install -r /etc/simple_grid/simple_grid_infra_validation_engine/requirements.txt
-
+pip install -r /etc/simple_grid/testinfra/simple_grid_infra_validation_engine/requirements.txt
+echo "Package and Install Yaml Compiler"
+pip install -r /etc/simple_grid/testinfra/simple_grid_yaml_compiler/requirements.txt
+mkdir /etc/simple_grid/testinfra/simple_grid_yaml_compiler/.temp
+(cd -- /etc/simple_grid/testinfra/simple_grid_yaml_compiler && python setup.py install )
+export PYTHONPATH=$PYTHONPATH:/etc/simple_grid/testinfra/simple_grid_yaml_compiler
+echo "export PYTHONPATH=$PYTHONPATH:/etc/simple_grid/testinfra/simple_grid_yaml_compiler" >> ~/.bashrc
 echo "Starting rsyslog"
 systemctl start rsyslog
+
 # echo "Setting up DinD"
 # systemctl start docker
 # ln -s /usr/libexec/docker/docker-runc-current /usr/bin/docker-runc
 # chmod +x /data/wrapdocker.sh
 # /data/wrapdocker.sh
-
 echo "All Set for development"
+cd /etc/simple_grid/

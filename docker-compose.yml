@@ -11,7 +11,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ../simple_grid_puppet_module/:/simple_grid
       - ./basic_config_master/data:/data
-      - ../simple_grid_infra_validation_engine:/etc/simple_grid/simple_grid_infra_validation_engine
+      - ../simple_grid_infra_validation_engine:/etc/simple_grid/testinfra/simple_grid_infra_validation_engine
+      - ../simple_grid_yaml_compiler:/etc/simple_grid/testinfra/simple_grid_yaml_compiler
     networks:
       simple:
         ipv4_address: 192.168.1.2
