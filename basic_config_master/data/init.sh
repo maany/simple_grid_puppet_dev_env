@@ -50,6 +50,7 @@ echo "Setup SSH"
 mkdir ~/.ssh
 cp /data/id_rsa ~/.ssh
 cp /data/id_rsa.pub ~/.ssh
+chmod 600 ~/.ssh/id_rsa
 
 # echo "Setting up DinD"
 # systemctl start docker
