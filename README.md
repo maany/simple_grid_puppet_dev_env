@@ -1,7 +1,7 @@
 # simple_grid_puppet_dev_kit
 
 The dev-kit is used for developing and testing the SIMPLE Grid framework right from your desktop. 
-It simutes a grid site by creates 3 containers (1 config master and 2 lightweight component nodes).
+It simulates a grid site by creates 3 containers (1 config master and 2 lightweight component nodes).
 You can execute the simple-grid puppet module until the pre-deploy stage (which essentially covers all the steps a site admin has to perform in order to use the framework).
 
 ## Setup instructions
